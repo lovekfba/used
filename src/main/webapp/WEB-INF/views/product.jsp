@@ -52,7 +52,7 @@
                     <div class="search_icon_box">
                         <img src="<c:url value='/img/search_icon.png'/>" alt="중고나라">
                     </div>
-                    <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?">
+                    <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?" autocomplete="off">
                 </div>
             </form>
 
@@ -381,16 +381,16 @@
             let o_pos = $('.product_info_txt1').offset().top
             console.log(o_pos)
             $('html, body').animate({
-                scrollTop: o_pos
-            }, 1000)
+                scrollTop: o_pos - 200
+            }, 300)
         })
         $('.info_tab2').click(function () {
 
             let o_pos = $('.product_info_txt2').offset().top
             console.log(o_pos)
             $('html, body').animate({
-                scrollTop: o_pos
-            }, 1000)
+                scrollTop: o_pos - 200
+            }, 300)
         })
         $('.btn_buy').click(function () {
 

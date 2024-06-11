@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="frm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <c:set var="logInOutLink" value="${sessionScope.cu_id == null ? '/login':'/logout'}" /> <%-- login 되어있으면 /logout 컨트롤러로 아니라면 /login 컨트롤러로 값이 바뀜 --%>
@@ -14,9 +15,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>categoryForm</title>
+  <title>카테고리 ${param.pro_category}</title>
 
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script defer src="<c:url value="/js/ham_btn.js"/>"></script>
 
   <link rel="stylesheet" href="<c:url value='/css/h_f.css' /> ">
   <link rel="stylesheet" href="<c:url value='/css/item.css' /> ">
@@ -54,7 +56,7 @@
               <div class="search_icon_box">
                 <img src="<c:url value='/img/search_icon.png'/>" alt="중고나라">
               </div>
-              <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?">
+              <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?" autocomplete="off">
             </div>
           </form>
 
@@ -228,16 +230,16 @@
           <div class="sec_table pro_price_box">
             <div class="sec_table_title p_p_title">가격</div>
             <div class="sec_table_desc p_p_desc">
-              <input type="text" class="p_s p_p_search_min" name="pro_min_price" placeholder="최소 가격">
+              <input type="text" class="p_s p_p_search_min" name="pro_min_price" placeholder="최소 가격" autocomplete="off" min="0">
               ~
-              <input type="text" class="p_s p_p_search_max" name="pro_max_price" placeholder="최대 가격">
+              <input type="text" class="p_s p_p_search_max" name="pro_max_price" placeholder="최대 가격" autocomplete="off" min="0">
               <button class="p_p_btn p_search_btn">적용</button>
             </div>
           </div>
 
           <!-- 지역 -->
           <div class="sec_table pro_area_box">
-            <div class="sec_table_title p_a_title">지역</div>
+            <div class="sec_table_title p_a_title" autocomplete="off">지역</div>
             <div class="sec_table_desc p_a_desc">
               <input type="text" class="p_s p_a_search" name="pro_area" placeholder="찾고 싶은 지역">
               <button class="p_a_btn p_search_btn">적용</button>
@@ -311,8 +313,12 @@
                   <div class="item_price">
                     <fmt:formatNumber value="${productDto_t.pro_price}" pattern="#,###"/>원
                   </div>
-                  <div class="item_area">${productDto_t.pro_area}</div>
-                  <div class="item_reg_date">${productDto_t.pro_reg_date}</div>
+                  <div class="item_area">${productDto_t.pro_area}</div> |
+
+<%--                  <c:set var="productDto_t_RegDate"><frm:formatDate value="${productDto_t.pro_reg_date}" pattern="yyyy-MM-dd" type="date"/></c:set>--%>
+
+                  <c:set var="productDto_RegDate"><frm:formatDate value="${productDto_t.pro_reg_date}" pattern="yyyy-MM-dd" type="date"/></c:set>
+                  <div class="item_reg_date">${productDto_RegDate}</div>
                 </div>
               </a>
             </li>

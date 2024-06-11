@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+
 /* 셋팅 */
 body { 
   margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
 }
 ul {
   list-style: none;
@@ -69,6 +73,7 @@ a {
 .form_search {
   width: 100%;
   max-width: 600px;
+  margin-bottom: 0;
 }
 
 .search_box {

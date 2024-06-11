@@ -28,7 +28,7 @@ public class SellController {
     return "sell";
     }
 
-    private static final String F_PATH = "C:/Users/user1/Desktop/workSpace/src/main/webapp/resources/img/";
+    private static final String F_PATH = "C:/Users/user1/Desktop/used/src/main/webapp/resources/img/";
     @PostMapping("/sell")
     public String pro_insert(@RequestParam(value="f_file", required = false) MultipartFile mf, ProductDto DTO, HttpSession session) {
 

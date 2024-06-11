@@ -65,7 +65,7 @@
             <div class="search_icon_box">
               <img src="../img/search_icon.png" alt="검색">
             </div>
-            <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요? 카페상품, 앱상품 모두 검색">
+            <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요? 카페상품, 앱상품 모두 검색" autocomplete="off">
           </div>
 
           <!-- 헤더의 아이콘들 -->

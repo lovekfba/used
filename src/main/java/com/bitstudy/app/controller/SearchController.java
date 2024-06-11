@@ -77,7 +77,7 @@ System.out.println("222222:" + sc);
 
             return "searchForm";
         } catch (Exception e) {
-            return "실패";
+            return "test";
         }
     }
 }

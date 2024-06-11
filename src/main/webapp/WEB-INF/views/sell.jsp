@@ -49,7 +49,7 @@
                     <div class="search_icon_box">
                         <img src="<c:url value='/img/search_icon.png'/>" alt="중고나라">
                     </div>
-                    <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?">
+                    <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?" autocomplete="off">
                 </div>
             </form>
 

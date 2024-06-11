@@ -8,6 +8,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<c:set var="logInOutLink" value="${sessionScope.cu_id == null ? '/login':'/logout'}" /> <%-- login 되어있으면 /logout 컨트롤러로 아니라면 /login 컨트롤러로 값이 바뀜 --%>
+<c:set var="logInOutTxt" value="${sessionScope.cu_id == null ? '로그인':'로그아웃'}" /> <%-- login 되어있으면 "logout" 텍스트로 아니라면 logout 컨트롤러로 값이 바뀜 --%>
+<c:set var="customerId" value="${sessionScope.cu_id == null ? '':sessionScope.cu_id}" />
+<c:set var="customerNickname" value="${sessionScope.cu_name = null ? '':sessionScope.cu_name}" />
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,15 +46,15 @@
 
 
                 <!-- 검색바 -->
-                <form action="<c:url value="/search"/>" method="get">
+                <form action="<c:url value="/search"/>" method="get" class="form_search">
 
                     <input type="hidden" name="pro_category">
 
                     <div class="search_box">
                         <div class="search_icon_box">
-                            <img src="<c:url value='/img/top_banner.webp'/>" alt="중고나라">
+                            <img src="<c:url value='/img/search_icon.png'/>" alt="중고나라">
                         </div>
-                        <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?">
+                        <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?" autocomplete="off">
                     </div>
                 </form>
 
@@ -67,7 +73,7 @@
                             <%--                <div class="login_icon"></div>--%>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" size="24"><path stroke="#141313" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.775 7.716a3.619 3.619 0 1 1-7.238.005 3.619 3.619 0 0 1 7.238-.005M13.15 13.371c-4.026 0-7.298 3.184-7.4 7.145h14.8c-.102-3.961-3.374-7.145-7.4-7.145"></path></svg>
                         </button>
-                        <b>${logInOutTxt}</b>
+                        <b class="">${logInOutTxt}</b>
                     </a>
 
                     <%--            <a href="<c:url value="/mypage"/>" class="mypage_icon_box h_icon"> <!-- <c:url value="??" /> -->--%>
@@ -211,8 +217,8 @@
             <div class="line"></div>
             <div class="login1">
                 <form action="<c:url value='/login'/>" id="frm" method="POST">
-                    <input type="text" class="txt_f cu_id" name="cu_id" placeholder="아이디 입력" required autocapitalize="off" value="asdf">
-                    <input type="password" class="txt_f cu_pw" name="cu_pw" placeholder="비밀번호 입력" required value="1234">
+                    <input type="text" class="txt_f cu_id" name="cu_id" placeholder="아이디 입력" required autocapitalize="off">
+                    <input type="password" class="txt_f cu_pw" name="cu_pw" placeholder="비밀번호 입력" required>
                     <div class="find_wrap">
                         <label class="idsave">
                             <input type="checkbox" name="rememberId" >ID저장
@@ -282,12 +288,6 @@
 </div>
 <script>
     $(document).ready(function() {
-        let cu_id = $('.cu_id').val()
-
-        if(cu_id.replace(/\s| /gi, "").length == 0) {
-            alert("내용을 입력해주세요.");
-            $('.cu_id').focus();
-        }
     })
 </script>
 

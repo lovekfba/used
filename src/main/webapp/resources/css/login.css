@@ -64,8 +64,7 @@
     text-align: center;
 }
 .find_id {
-    border-left: 1px solid #a2a2a2;
-    border-right: 1px solid #a2a2a2;
+    margin: 0 5px;
 }
 .idsave{
     color: #a2a2a2;

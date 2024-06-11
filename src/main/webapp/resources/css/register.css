@@ -7,7 +7,7 @@ body{margin: 0;}
     justify-content: center;
     align-items: center;
     min-width: 400px;
-    padding: 40px;
+    padding-top: 40px;
 }
 .mainbox{
     width: 400px;

@@ -53,7 +53,7 @@
               <div class="search_icon_box">
                 <img src="<c:url value='/img/search_icon.png'/>" alt="중고나라">
               </div>
-              <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?">
+              <input type="text" name="keyword" id="search" placeholder="어떤 상품을 찾으시나요?" autocomplete="off">
             </div>
           </form>
 
@@ -257,7 +257,10 @@
           <!-- 평균 가격 -->
           <div class="sec_pro_price pro_price_avg">
             <div class="s_p_p_txt">평균 가격</div>
-            <div class="s_p_p_info">${avg_price}원</div>
+            <div class="s_p_p_info">
+              <fmt:formatNumber value="${avg_price}" pattern="#,###"/>
+              원
+            </div>
           </div>
 
           <div class="pro_line">|</div>
@@ -265,7 +268,9 @@
           <!-- 가장 높은 가격 -->
           <div class="sec_pro_price pro_price_max">
             <div class="s_p_p_txt">가장 높은 가격</div>
-            <div class="s_p_p_info">${max_price}원</div>
+            <div class="s_p_p_info">
+              <fmt:formatNumber value="${max_price}" />원
+            </div>
           </div>
 
           <div class="pro_line">|</div>
@@ -273,7 +278,9 @@
           <!-- 가장 낮은 가격 -->
           <div class="sec_pro_price pro_price_min">
             <div class="s_p_p_txt">가장 낮은 가격</div>
-            <div class="s_p_p_info">${min_price}원</div>
+            <div class="s_p_p_info">
+              <fmt:formatNumber value="${min_price}" />원
+            </div>
           </div>
 
         </div> <!-- pro_price_info -->
@@ -302,8 +309,9 @@
                   <div class="item_price">
                     <fmt:formatNumber value="${productDto_t.pro_price}" pattern="#,###"/>원
                   </div>
-                  <div class="item_area">${productDto_t.pro_area}</div>
-                  <div class="item_reg_date">${productDto_t.pro_reg_date}</div>
+                  <div class="item_area">${productDto_t.pro_area}</div> |
+                  <c:set var="productDtoRegDate"><fmt:formatDate value="${productDto_t.pro_reg_date}" pattern="yyyy-MM-dd" type="date"/></c:set>
+                  <div class="item_reg_date">${productDtoRegDate}</div>
                 </div>
               </a>
             </li>
@@ -316,15 +324,15 @@
 <%--        &option=${param.option}&keyword=${param.keyword} --%>
         <div class="pagination">
           <c:if test="${ph.showPrevBtn}">
-            <a href="<c:url value='/search?keyword=${param.keyword}&page=${ph.startPage - 1}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${pro_area}' />" class="startPage"><</a>
+            <a href="<c:url value='/search?keyword=${param.keyword}&page=${ph.startPage - 1}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${param.pro_area}' />" class="startPage"><</a>
           </c:if>
 
           <c:forEach var="i" begin="${ph.startPage}" end="${ph.endPage}">
-            <a href="<c:url value='/search?keyword=${param.keyword}&page=${i}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${pro_area}'/>" class="page ${i==ph.page?"pageActive":""}" >${i}</a>
+            <a href="<c:url value='/search?keyword=${param.keyword}&page=${i}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${param.pro_area}'/>" class="page ${i==ph.page?"pageActive":""}" >${i}</a>
           </c:forEach>
 
           <c:if test="${ph.showNextBtn}">
-            <a href="<c:url value='/search?keyword=${param.keyword}&page=${ph.endPage + 1}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${pro_area}'/>" class="endPage">></a>
+            <a href="<c:url value='/search?keyword=${param.keyword}&page=${ph.endPage + 1}&pageSize=${ph.pageSize}&pro_category=${param.pro_category}&pro_min_price=${param.pro_min_price}&pro_max_price=${param.pro_max_price}&pro_area=${param.pro_area}'/>" class="endPage">></a>
           </c:if>
         </div>
 
