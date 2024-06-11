@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.SellMapper">
+
+    <insert id="proInsert" parameterType="ProductDto">
+        insert into product values (null, #{FK_cu_id}, null, #{pro_title}, #{pro_img}, #{pro_price}, #{pro_area}, 1, #{pro_info}, now(), now(), #{pro_category})
+    </insert>
+
+
+</mapper>

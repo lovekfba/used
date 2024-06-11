@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.SearchMapper">
+
+<!--    header: 총합 mysql 문-->
+    <select id="searchSelect" parameterType="searchDto" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where true
+
+<!--
+  map.put("keyword", keyword); // 초밥
+  map.put("minPrice", minPrice); // null
+  map.put("maxPrice", maxPrice); // 10000
+  map.put("local", local); // 서울
+-->
+
+        <!-- 검색바에 keyword 입력했을때 -->
+            <if test="keyword != null and !keyword.equals('')">
+                and pro_title like concat('%', #{keyword}, '%')
+            </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+            <if test="pro_min_price != null">
+                and #{pro_min_price} &lt;= pro_price
+            </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+            <if test="pro_max_price != null">
+                and pro_price &lt;= #{pro_max_price}
+            </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+            <if test="pro_area != null and !pro_area.equals('')">
+                and pro_area like concat('%', #{pro_area}, '%')
+            </if>
+
+        limit #{offset}, #{pageSize}
+
+    </select>
+
+<!--    뽑아낸 상품들의 총 개수를 구한다.-->
+    <select id="searchSelectCount" parameterType="searchDto" resultType="int">
+        select count(*) from product
+        where true
+
+        <!-- 검색바에 keyword null값이 없을때 -->
+        <if test="keyword != null and !keyword.equals('')">
+            and pro_title like concat('%', #{keyword}, '%')
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+    </select>
+
+<!--    search해서 뽑아낸 상품들의 가격들을 측정한다.-->
+    <!--  최소가격  -->
+    <select id="searchSelectMinPrice" parameterType="searchDto" resultType="int">
+        select pro_price from product
+        where true
+
+        <!-- 검색바에 keyword null값이 없을때 -->
+        <if test="keyword != null and !keyword.equals('')">
+            and pro_title like concat('%', #{keyword}, '%')
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+        order by pro_price asc
+        limit 1;
+    </select>
+    <!--  최대가격  -->
+    <select id="searchSelectMaxPrice" parameterType="searchDto" resultType="int">
+        select pro_price from product
+        where true
+
+        <!-- 검색바에 keyword null값이 없을때 -->
+        <if test="keyword != null and !keyword.equals('')">
+            and pro_title like concat('%', #{keyword}, '%')
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+        order by pro_price desc
+        limit 1;
+
+    </select>
+    <!-- 평균가격 -->
+    <select id="searchSelectAvgPrice" parameterType="searchDto" resultType="int">
+        select round(avg(pro_price), 0) from product
+        where true
+
+        <!-- 검색바에 keyword null값이 없을때 -->
+        <if test="keyword != null and !keyword.equals('')">
+            and pro_title like concat('%', #{keyword}, '%')
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+    </select>
+
+
+
+
+
+    <!--    category-검색: 총합 mysql 문-->
+    <select id="categorySelect" parameterType="searchDto" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where true
+
+        <!--        map.put("keyword", keyword); // 초밥-->
+        <!--        map.put("minPrice", minPrice); // null-->
+        <!--        map.put("maxPrice", maxPrice); // 10000-->
+        <!--        map.put("local", local); // 서울-->
+
+        <if test="pro_category != null and !pro_category.equals('')">
+            and pro_category = #{pro_category}
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--    category-검색: 뽑아낸 상품들의 총 개수를 구한다.-->
+    <select id="categorySelectCount" parameterType="searchDto" resultType="int">
+        select count(*) from product
+        where true
+
+        <!-- 검색바에 keyword 입력했을때 -->
+        <if test="pro_category != null and !pro_category.equals('')">
+            and pro_category = #{pro_category}
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+    </select>
+<!--    category내에서 검색한 상품들의 최소, 최대, 평균 가격들을 구한다. -->
+    <!-- 최소가격 -->
+    <select id="categorySelectMinPrice" parameterType="searchDto" resultType="int">
+        select pro_price from product
+        where true
+
+        <!-- 검색바에 keyword 입력했을때 -->
+        <if test="pro_category != null and !pro_category.equals('')">
+            and pro_category = #{pro_category}
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+        order by pro_price asc
+        limit 1;
+
+    </select>
+
+    <!-- 최대가격 -->
+    <select id="categorySelectMaxPrice" parameterType="searchDto" resultType="int">
+        select pro_price from product
+        where true
+
+        <!-- 검색바에 keyword 입력했을때 -->
+        <if test="pro_category != null and !pro_category.equals('')">
+            and pro_category = #{pro_category}
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+        order by pro_price desc
+        limit 1;
+
+    </select>
+
+    <!-- 평균 가격 -->
+    <select id="categorySelectAvgPrice" parameterType="searchDto" resultType="int">
+        select round(avg(pro_price), 0) from product
+        where true
+
+        <!-- 검색바에 keyword 입력했을때 -->
+        <if test="pro_category != null and !pro_category.equals('')">
+            and pro_category = #{pro_category}
+        </if>
+
+        <!-- min_price 내에 값이 들어가있을때 -->
+        <if test="pro_min_price != null">
+            and #{pro_min_price} &lt;= pro_price
+        </if>
+
+        <!-- max_price 내에 값이 들어가있을때 -->
+        <if test="pro_max_price != null">
+            and pro_price &lt;= #{pro_max_price}
+        </if>
+
+        <!-- pro_area 내에 값이 들어가있을때 -->
+        <if test="pro_area != null and !pro_area.equals('')">
+            and pro_area like concat('%', #{pro_area}, '%')
+        </if>
+
+    </select>
+
+</mapper>

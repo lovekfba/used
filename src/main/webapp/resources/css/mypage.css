@@ -1,0 +1,43 @@
+
+
+/* 기본 세팅 */
+body{margin: 0;}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.dispaly_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ********** */
+/* **wrap** */
+/* ********** */
+
+
+/* ****** */
+/* main */
+/* ****** */
+
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+/* 마이페이지 왼쪽 파트 */
+.aside_left {
+    width: 25%;
+    height: 100%;
+    background-color: skyblue;
+}
+.aside_right {
+    width: 70%;
+    height: 100%;
+    background-color: blueviolet;
+}

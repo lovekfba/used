@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.CustomerMapper">
+
+<!--    회원가입용 -->
+    <insert id="insertCustomer" parameterType="CustomerDto">
+        insert into customer value(null, #{cu_id}, #{cu_pw}, #{cu_name}, #{cu_phone}, #{cu_email}, #{cu_birth}, #{cu_gender}, now());
+    </insert>
+
+<!--    회원가입: 유호성 검사 -->
+    <select id="selectCustomer" parameterType="String" resultType="CustomerDto">
+        select * from customer
+        where cu_id = #{cu_id};
+    </select>
+
+<!--    로그인 -->
+    <select id="selectLogin" parameterType="map" resultType="CustomerLoginDto">
+        select * from customer
+        where cu_id = #{cu_id} and cu_pw = #{cu_pw};
+    </select>
+
+<!--    아이디에 저장된 닉네임 불러오기-->
+    <select id="customerName" parameterType="String" resultType="String">
+        select cu_name from customer
+        where cu_id = #{cu_id}
+    </select>
+
+<!--    개인정보 수정 -->
+    <update id="customerModify" parameterType="CustomerDto">
+        update customer set cu_id=#{cu_id}, cu_pw=#{cu_pw}, cu_name=#{name}, cu_phone=#{cu_phone}, cu_email=#{cu_email}
+        where cu_id=#{cu_id}
+    </update>
+
+
+<!--    전부 지우기 -->
+    <delete id="deleteAll">
+        truncate customer;
+    </delete>
+</mapper>

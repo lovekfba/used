@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.CommentMapper">
+
+    <!--부모 글 생성-->
+
+    <insert id="parentInsert" parameterType="CommentDTO">
+        insert into comment values (null, (select ifnull(MAX(co_refer),0) + 1 from comment A), 0, 0, #{co_commenter}, #{co_comment}, now(), 0, 0, #{Fk_pro_seqno})
+    </insert>
+
+    <!--답글 생성-->
+
+    <update id="insertUpdate" parameterType="CommentDTO">
+        UPDATE comment AS c1
+        JOIN (SELECT co_refer, MAX(co_step) AS max_step FROM comment WHERE co_seqno = #{co_seqno}) AS c2
+        ON c1.co_refer = c2.co_refer
+        SET c1.co_step = c1.co_step + 1
+        WHERE c1.co_step > c2.max_step
+    </update>
+
+    <insert id="childInsert" parameterType="CommentDTO">
+        insert  into comment values (null,
+        (select co_refer from comment A where co_seqno = #{co_seqno}),
+        (select co_step from comment A where co_seqno = #{co_seqno}) + 1,
+        (select co_depth from comment A where co_seqno = #{co_seqno}) + 1, #{co_commenter}, #{co_comment}, now(), 0, 0, #{Fk_pro_seqno})
+    </insert>
+
+    <!--댓글 전체 불러오기-->
+
+    <select id="selectAll" resultType="CommentDTO">
+        select * from comment order by co_refer, co_step;
+    </select>
+
+    <!--글 삭제-->
+
+    <delete id="delete" parameterType="map">
+        delete from comment where co_seqno= #{co_seqno} and co_commenter = #{co_commenter}
+    </delete>
+
+    <!--글 수정-->
+
+    <update id="update" parameterType="CommentDTO">
+        update comment set co_comment = #{co_comment}, co_reg_date = now() where co_seqno = #{co_seqno} and co_commenter = #{co_commenter}
+    </update>
+
+    <!--    ******************** 페이지네이션 ********************-->
+
+    <!--글 총 갯수 불러오기(페이지네이션 관련)-->
+    <select id="commentCount" parameterType="int" resultType="int">
+        select count(*) from comment where Fk_pro_seqno = #{Fk_pro_seqno};
+    </select>
+
+    <!--  게시판용 - 특정 번째부터 n개 가져오기. 최신글 순으로 불러오기   -->
+    <select id="selectPage" parameterType="map" resultType="CommentDTO">
+        select * from comment
+        where Fk_pro_seqno = #{Fk_pro_seqno}
+        order by co_refer, co_step
+        limit #{offset} , #{pageSize}
+    </select>
+
+    <!--    ******************** 상품 ********************-->
+
+    <select id="selectProduct" parameterType="Integer" resultType="ProductDto">
+        select * from product
+        where pro_seqno = #{Fk_pro_seqno}
+    </select>
+
+    <update id="saleUpdate" parameterType="ProductDto">
+        update product set pro_consumer_id = #{pro_consumer_id}, pro_sold_out = 0,  pro_sale_date = now() where pro_seqno = #{pro_seqno}
+    </update>
+</mapper>
