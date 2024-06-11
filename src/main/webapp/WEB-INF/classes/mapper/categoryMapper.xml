@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.CategoryMapper">
+
+<!--    category별로 상품 불러오기 얘가 필요한지 모르겠네-->
+    <select id="categoryList" parameterType="String" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where pro_category = #{pro_category}
+        order by pro_reg_date desc;
+    </select>
+
+<!--    category별 상품의 총 개수 구하기 -->
+    <select id="categoryCount" parameterType="String" resultType="int">
+        select count(*) from product
+        where pro_category = #{pro_category};
+    </select>
+
+<!--    catagory 페이지 내에서 불러오는 기준에 따라 상품 나열시키기(ex. 추천순, 낮은 가격순, 높은 가격순, 최신순 -->
+
+<!--    추천순-? -->
+
+<!--    카테고리별: 낮은 가격순 -->
+    <select id="categoryMinPriceList" parameterType="String" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where pro_category = #{pro_category}
+        order by pro_price asc;
+    </select>
+
+<!--    카테고리별: 높은 가격순 -->
+    <select id="categoryMaxPriceList" parameterType="String" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where pro_category = #{pro_category}
+        order by pro_price desc;
+    </select>
+
+<!--    카테고리별: 최신순 -->
+    <select id="categoryRegDateList" parameterType="String" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where pro_category = #{pro_category}
+        order by pro_reg_date asc;
+    </select>
+
+<!--    카테고리별: 상품들의 가장 높은 가격을 뽑아오기-->
+    <select id="categoryMaxPrice" parameterType="String" resultType="int">
+        select pro_price from product
+        where pro_category = #{pro_category}
+        order by pro_price desc
+        limit 1;
+    </select>
+
+<!--    카테고리별: 상품들의 가장 낮은 가격을 뽑아오기-->
+    <select id="categoryMinPrice" parameterType="String" resultType="int">
+        select pro_price from product
+        where pro_category = #{pro_category}
+        order by pro_price asc
+        limit 1;
+    </select>
+
+<!--    카테고리별: 상품들의 평균 가격을 뽑아오기-->
+    <select id="categoryAvgPrice" parameterType="String" resultType="int">
+        select round(AVG(pro_price)) from product
+        where pro_category = #{pro_category}
+    </select>
+
+<!-- 페이징 구현-->
+    <select id="categoryPagination" parameterType="map" resultType="ProductDto">
+        select pro_seqno, pro_img, pro_title, pro_price, pro_area, pro_reg_date from product
+        where pro_category = #{pro_category}
+        order by pro_seqno desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,289 @@
+
+body{margin: 0;}
+.main{
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+    min-width: 400px;
+    padding-top: 40px;
+}
+.mainbox{
+    width: 400px;
+    height: 1130px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 60px;
+}
+.loginbox{
+    width: 240px;
+    height: 100px;
+    margin: 50px auto 0 auto;
+    font-size: 60px;
+    font-weight: bolder;
+    font-family: 'OG_Renaissance_Secret-Rg' , 'Franklin Gothic Medium', 'Arial Narrow',Arial, sans-serif;
+}
+.warnningbox{
+    color: red;
+}
+.login1{
+    width: 300px;
+    height: 100px;
+    margin: 0px auto;
+
+}
+.txt_f {
+    width: 410px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    border: 1px solid #a3a3a3;
+    margin: 5px 0;
+}
+.uid {
+    width: 350px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.cu_id{
+    width: 410px;
+}
+.upw {
+    border-radius: 5px ;
+
+}
+.btn_submit {
+    width: 100%;
+    height: 50px;
+
+    background: black;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 15px auto 0px auto;
+}
+.birth{
+    width: 100%;
+    height: 47px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1px solid #a3a3a3;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+select{
+    height: 25px;
+    /* -webkit-appearance: none;  */
+    /* -moz-appearance: none; */
+    /* appearance: none; */
+    /* outline: none; */
+    /* border: none; */
+}
+.sel {
+    font-size: 12px;
+
+    border-color: #c1c1c1;
+}
+.birth{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.ymd{
+    margin-top: 3px;
+    font-size: 12px;
+}
+.font2{
+    font-size: 15px;
+    line-height: 54px;
+
+}
+input{
+    font-size: 11px;
+}
+
+.line{
+    display: none;
+}
+.form_box{
+    display: flex;
+    flex-wrap: wrap;
+}
+.font_area{
+    width: 80px;
+}
+
+.btn_box{
+    width: 410px;
+    height: 50px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+}
+.label_left{
+    width: 100px;
+    height: 45px;
+    border: 1px solid;
+    margin-right: 20px;
+    line-height: 45px;
+}
+.label_right{
+    width: 100px;
+    height: 45px;
+    border: 1px solid;
+    line-height: 45px;
+}
+.idcheck{
+
+    width: 64px;
+    height: 42px;
+    border: 1px solid;
+    margin-top: 5px;
+    line-height: 42px;
+    text-align: center;
+}
+.warnningbox{
+    display: block;
+    width: 300px;
+
+
+    height: 30px;
+
+}
+input[name="rd"]{display: none;}
+#rd1:checked ~  div > div.btn_box > label.label_left,
+#rd2:checked ~  div > div.btn_box > label.label_right{
+    background-color: black;
+    color: white;
+}
+@media screen and (min-width: 768px) {
+    .main{
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        min-width: 400px;
+
+    }
+    .mainbox{
+        width: 700px;
+        height: 780px;
+        border: none;
+        border-radius: 10px;
+    }
+    .loginbox{
+        width: 240px;
+        height: 100px;
+        margin: 50px auto auto auto;
+        font-size: 60px;
+        font-weight: bolder;
+        font-family: 'OG_Renaissance_Secret-Rg' , 'Franklin Gothic Medium', 'Arial Narrow',Arial, sans-serif;
+
+    }
+    .line{
+        display: block;
+        width: 2px;
+        width: 700px;
+        border: 1px solid;
+        margin-bottom: 50px;
+    }
+    .login1{
+        width: auto;
+        height: auto;
+        margin: 0px auto;
+
+    }
+    .txt_f {
+        width: 410px;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        border: 1px solid #a3a3a3;
+    }
+    .uid {
+        margin-bottom: 5px;
+        margin-top: 5px;
+
+    }
+    .upw {
+        border-radius: 5px ;
+
+    }
+    .form_box{
+        width: 510px;
+        margin: 0 auto;
+    }
+    .btn_submit {
+        width: 100%;
+        height: 50px;
+        margin-top: 15px;
+        background: black;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+
+        font-size: 20px;
+        font-weight: 900;
+    }
+    .birth{
+        width: 410px;
+        height: 42px;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        border: 1px solid #a3a3a3;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        display: flex;
+    }
+    .ymd{
+        margin-top: 3px;
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 3px;
+    }
+    .font2{
+        font-weight: 600;
+        font-size: 15px;
+        width: 100px;
+        display: inline-block;
+        text-align: left;
+
+    }
+    input{
+        font-size: 11px;
+        border: none;
+    }
+    input:focus{
+        outline: none;
+    }
+    .cu_id{
+        width: 410px;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        border: 1px solid #a3a3a3;
+    }
+    .idcheck{
+
+        width: 107px;
+        height: 42px;
+        border: 1px solid;
+        margin-top: 5px;
+        line-height: 42px;
+        text-align: center;
+    }
+    .warnningbox{
+        display: block;
+        width: 410px;
+        margin-left: 100px;
+        height: 30px;
+
+    }
+
+
+}

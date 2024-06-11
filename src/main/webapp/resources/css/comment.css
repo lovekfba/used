@@ -1,0 +1,231 @@
+/*폰트 임포트*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/*전체 페이지*/
+body {
+    font-family: Arial, sans-serif;
+    /*background-color: #f4f4f4;*/
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/*전체 페이지 중 컨텐츠를 띄울 부분*/
+#comment_area {
+    max-width: 850px;
+    min-width: 480px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+}
+.new_comment{
+    border-bottom: 3px solid;
+    margin-bottom: 20px;
+}
+
+#btn_submit_comment{
+    margin-bottom: 10px;
+}
+
+/*input type = text  의 기본설정*/
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-top: 1px solid;
+    word-wrap: break-word;
+    font-family: "Noto Sans KR", sans-serif;
+}
+/*input 클릭시 생기는 아웃라인 없애기*/
+input:focus{outline: none}
+/*button 의 기본설정*/
+
+.comment_btn {
+    padding: 8px 20px;
+    background-color: rgb(205 213 202 / 50%);
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 5px;
+}
+/*버튼 마우스커서 올리고 있을 시 색변경*/
+.comment_btn:hover{
+    background-color: black;
+    color: white;
+}
+/*스판 기본설정*/
+span{
+    font-weight: 600;
+}
+
+/* 댓글창을 감싸는박스*/
+.list_item {
+    margin-bottom: 10px;
+}
+
+/*댓글 번호, 작성자 이름, 년월일 시간 표시하는 박스*/
+.item_head {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*댓글을 쓸 장소인 input type= text의 클래스명*/
+.comment_title {
+    width: calc(100% - 110px);
+    padding: 5px;
+    border: 2px solid black;
+    font-family: "Noto Sans KR", sans-serif;
+}
+/*수정,삭제버튼*/
+.btn_comment {
+    margin-left: 5px;
+    color: black;
+    font-family: "Noto Sans KR", sans-serif;
+
+}
+/*수정버튼 누른 후 등록, 취소버튼*/
+.btn_comment_edit_submit,
+.btn_comment_edit_cancel {
+    color: black;
+    font-family: "Noto Sans KR", sans-serif;
+}
+/*답글쓰기를 왼쪽 수정,삭제 버튼을 오른쪽으로*/
+.btn_flex{
+    display: flex;
+    justify-content: space-between;
+    font-family: "Noto Sans KR", sans-serif;
+}
+/*첫번째댓글*/
+.item_box {
+    padding: 10px 10px 0 10px;
+    margin-top: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*두번째댓글*/
+.item_box2 {
+    padding-left: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*세번째댓글*/
+.item_box3 {
+    padding-left: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*네번쨰댓글*/
+.item_box4 {
+    padding-left: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*다섯번째댓글 이후로는 고정*/
+.item_box5 {
+    padding-left: 200px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/*대댓글 달때 사이즈 튀어서 조정용*/
+.btn_size{
+    padding: 2px;
+    width: 66px;
+    height: 37px;
+    margin-left: 10px;
+}
+
+/*플랙스 부여*/
+.option_disflex{
+    display: flex;
+}
+
+/*너무붙어있는 요소 공간만드는 용도*/
+.mazbot{
+    margin-bottom: 10px;
+}
+
+/*텍스트를 오른쪽으로 몰아주는 클래스*/
+.text_right{
+    text-align: right;
+}
+
+/* display: none; 클래스*/
+.displayNone {
+    display: none;
+}
+
+/*판매하기 버튼*/
+.sale_btn{
+    margin-left: 10px;
+    height: 39px;
+    line-height: 39px;
+    padding: 0;
+    width: 87px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/******************* 페이지네이션 *****************/
+
+.pagination {
+    font-size: 15px;
+    margin: 10px 0;
+    display: flex;
+    gap: 9px;
+    justify-content: center;
+    align-items: center;
+}
+.startPage, .endPage {
+}
+a{
+    text-decoration: none;
+    color: inherit;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.pageActive {
+    color: white;
+    background-color: black;
+    padding: 5px;
+}
+@media screen  and (max-width: 720px){
+    .item_box2,.item_box3,.item_box4,.item_box5{
+        padding-left: 0;
+    }
+    button{
+        padding: 10px ;
+    }
+    #comment_area {
+        max-width: 850px;
+        min-width: 0;
+        margin: auto;
+        padding: 5px;
+        background-color: #fff;
+    }
+}
+@media screen and (max-width: 480px) {
+    button{
+        padding: 5px ;
+    }
+    #comment_area {
+        max-width: 850px;
+        min-width: 0;
+        margin: auto;
+        padding: 5px;
+        background-color: #fff;
+    }
+
+}

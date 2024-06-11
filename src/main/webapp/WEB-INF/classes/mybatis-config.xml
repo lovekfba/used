@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+<!--        댓글 dto -->
+        <typeAlias alias="CommentDTO" type="com.bitstudy.app.domain.CommentDTO"/>
+<!--        회원 dto -->
+        <typeAlias alias="CustomerDto" type="com.bitstudy.app.domain.CustomerDto"/>
+<!--        로그인 dto-->
+        <typeAlias alias="CustomerLoginDto" type="com.bitstudy.app.domain.CustomerLoginDto"/>
+<!--        마이페이지 dto -->
+        <typeAlias alias="MyPageDto" type="com.bitstudy.app.domain.MyPageDto"/>
+<!--        메인 dto, 상품 dto, 카테고리 dto-->
+        <typeAlias alias="ProductDto" type="com.bitstudy.app.domain.ProductDto"/>
+<!--        검색 dto-->
+        <typeAlias alias="SearchDto" type="com.bitstudy.app.domain.SearchDto"/>
+
+    </typeAliases>
+</configuration>

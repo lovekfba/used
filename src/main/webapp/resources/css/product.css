@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body{
+    font-family: "Noto Sans KR", sans-serif;
+}
+#wrap{
+    padding-top: 220px;
+}
+
+.container {
+    padding: 100px 0;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 850px;
+    position: relative;
+}
+
+.detail_box {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    max-width: 850px;
+
+    margin-bottom: 65px;
+}
+
+.tb_desc{
+    text-align: center;
+}
+
+.tb_desc_box{
+    width:100%;
+    height: 80px;
+
+    margin: auto;
+    line-height: 30px;
+}
+
+.right_line{
+    border-right:1px solid   rgb(155, 155, 155);
+    width: 2px;
+    height: 50px;
+}
+.tb_desc_box_top{
+    height: 30px;
+    text-align: center;
+
+}
+.tb_desc_box_bot{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.nicknamebox{
+    margin-top: 5px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.nickbox_box{
+    width: calc(100%);
+    height: 100px;
+    float: left;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.nickbox{
+    width:calc((100% /3)) ;
+    border: 1px solid;
+    height: 100px;
+}
+.list{
+    width: 100%;
+    height: calc(100% - 150px);
+    display: flex;
+    flex-wrap: nowrap;
+}
+.list_box{
+    width: calc(100% / 3);
+    height: 100%;
+}
+.list_box_in{
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+}
+
+.info3box{
+    text-align: right;
+    margin-bottom: 11px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.info3box_in{
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    color: black;
+    line-height: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 900;
+}
+.explane{
+    margin-bottom: 20px;
+}
+.explane_top{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.explane_left{
+    width: 100px;
+    height: 20px;
+    font-size: 13px;
+    color: #7b7b7b;
+    margin-left: 10px;
+    line-height: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.explane_in{
+
+    font-size: 13px;
+    color: #7b7b7b;
+    margin-left: 10px;
+    line-height: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* ---------------magnifier */
+
+.magnifier {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 1);
+    transform: scale(1.3);
+    display: none;
+    background: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.magnifier:hover {
+    cursor: none;
+}
+
+.img_box {
+    height: 365px;
+    position: relative; /* 부모 요소 설정 */
+    overflow: hidden; /* 자식 요소가 부모 요소를 벗어나는 것을 숨김 */
+    border-radius: 20px;
+}
+
+.img_box img {
+    width: 100%;
+    height: 100%;
+}
+
+.magnifier {
+    position: absolute; /* 부모 요소에 대해 상대적 위치 지정 */
+    background-size: 200% 200%; /* 배경 크기를 이미지 크기의 2배로 설정 */
+    background-repeat: no-repeat;
+}
+
+/* 마우스가 올라갔을 때 돋보기 활성화 */
+.img_box:hover .magnifier {
+    display: block; /* 마우스가 올라갔을 때 돋보기 보이도록 설정 */
+}
+
+/* 이미지 상단 왼쪽을 마우스 중심으로 잡도록 위치 조정 */
+.img_box:hover .magnifier {
+    left: calc((100% / 2) - (120px / 2)); /* 돋보기를 이미지 중앙에 위치 */
+    top: calc((100% / 2) - (120px / 2));
+}
+
+/* 마우스 이동에 따라 배경 이미지 위치 조정 */
+.img_box:hover .magnifier {
+    background-position: calc(50% + (var(--x) / 2)) calc(50% + (var(--y) / 2));
+}
+
+/* 마우스 좌표값 설정 */
+.img_box:hover .magnifier::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ---------------info_box */
+
+.info_box {
+    width: 60%;
+    padding: 0 5px;
+    box-sizing: border-box;
+    border-top: 2px solid;
+}
+
+.item_title_top {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.item_title_bot {
+    font-size: 25px;
+    font-family: "Noto Sans KR", sans-serif;
+    margin-bottom: 10px;
+}
+.item_price{
+    font-weight: 900;
+}
+
+.bor_bot{
+    border-bottom: 1px solid;
+}
+.item_info {
+    width: 100%;
+    height: 80px;
+    font-size: 13px;
+    font-weight: 900;
+    color: #000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px auto 10px ;
+}
+.item_info_in{
+    width: 40%;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid;
+    text-align: center;
+
+}
+
+/* ---------------info_table */
+
+.tb_title {
+    width: 150px;
+    padding: 10px 0;
+}
+
+.heart_off{
+    background: url(../../resources/img/off_heart.png) center no-repeat;
+    background-size: cover;
+}
+
+.heart_on{
+    background: url(../../resources/img/on_heart.svg) center no-repeat;
+    background-size: cover;
+}
+
+.heart_off:hover{
+    cursor: pointer;
+}
+.heart_on:hover{
+    cursor: pointer;
+}
+
+
+
+/* ---------------info_option */
+
+.selected_opt {
+    font-size: 13px;
+    color: #000000;
+    font-weight: 700;
+}
+
+.so_desc {
+    text-align: right;
+    border-bottom: 2px solid #000000;
+    line-height: 30px;
+}
+
+.selected_item {
+    line-height: 25px;
+    display: flex;
+    border: 1px solid #ababab;
+    border-top: none;
+    padding: 10px 7px;
+    box-sizing: border-box;
+}
+
+
+
+.btn_item_box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.heart{
+    width: 30px;
+    height: 30px;
+}
+.loca{
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto 0 10px;
+}
+.btn_buy {
+    width: 60%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 700;
+    background: #000;
+    color: #fff;
+    margin: 0 auto;
+
+}
+
+.btn_buy span {
+    cursor: pointer;
+}
+
+.item_boxbtn {
+    width: calc((50% - 2.5px));
+    height: 40px;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    font-size: 14px;
+    position: relative;
+}
+
+/* -----------------------product_info */
+
+.fixed_info_tab_box {
+    height: 50px;
+    line-height: 50px;
+}
+
+.info_tab_box {
+    height: 50px;
+    display: flex;
+    background: #fff;
+}
+
+.info_tab {
+    text-align: center;
+    font-size: 20px;
+    width: calc(100% / 2);
+    border-bottom: 3px solid #7b7b7b;
+    transition: all 0.7s;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.product_info_txt {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+}
+.product_info_txt{
+    width: 100%;
+}
+
+.product_info_txt .pro_area{
+    font-size: 26px;
+    float: right;
+    line-height: 26px;
+    margin-bottom: 0px;
+    border-bottom: none;
+    padding-top: 65px;
+    margin-right: 30px;
+}
+
+.product_info_txt span {
+    display: inline-block;
+    padding-top: 40px;
+    margin-left: 30px;
+    margin-bottom: 40px;
+    border-bottom: 5px solid;
+    box-sizing: border-box;
+}
+
+.product_detail {
+    /* font-size: 10; */
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.size {
+    font-size: 0;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.size img {
+    display: block;
+    margin: 0 auto;
+}
+
+.empty_box {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 300px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.flex_sel{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.emptybox1{
+    width: 100%;
+    height: 350px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Noto Sans KR", sans-serif;
+    margin-top: 20px;
+}
+.emptybox2{
+    width: 100%;
+    /*height: 500px;*/
+}
+.btn_buy:hover{
+    cursor: pointer;
+}
+
+.cover_img{
+    display: flex;
+}
+
+.footer{
+    margin-top: 5px;
+}
+
+@media screen and (max-width:802px ) {
+    .container{
+        width: 90%;
+    }
+    .detail_box{
+        gap: 5px;
+    }
+}
+@media screen and (max-width: 720px) {
+    .detail_box{
+        flex-wrap: wrap;
+
+    }
+    .info_box{
+        width: 100%;
+    }
+    .cover_img{
+        margin: 0 auto;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .item_title_top{
+        font-size: 12px;
+    }
+    .item_title_bot{
+        font-size: 18px;
+    }
+    span{
+        font-size: 13px;
+    }
+    .emptybox1{
+        font-size: 15px;
+        height: auto;
+
+    }
+    .product_info_txt .pro_area{
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 0px;
+        border-bottom: none;
+        padding-top: 39px;
+        margin-right: 30px;
+    }
+}
+@media  screen and (max-width: 480px) {
+
+    .nicknamebox{
+        font-size: 9px;
+    }
+    .item_title_top{
+        font-size: 9px;
+    }
+    .item_title_bot{
+        font-size: 15px;
+    }
+    .btn_buy{
+        width: 100%;
+    }
+    span{
+        font-size: 11px;
+    }
+    .emptybox1{
+        font-size: 12px;
+        height: auto;
+
+    }
+
+    .product_info_txt .pro_area{
+        font-size: 15px;
+        float: right;
+        line-height: 26px;
+        margin-bottom: 0px;
+        border-bottom: none;
+        padding-top: 39px;
+        margin-right: 30px;
+    }
+    .container{
+        width: 100%;
+    }
+
+
+}
